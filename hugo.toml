@@ -1,0 +1,42 @@
+baseURL = "https://zhumenglonge.github.io/boke/"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
+title = "我们的博客"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+paginate = 10
+
+[params]
+  author = "zhumenglonge"
+  description = "一个基于 Hugo + GitHub Pages 的团队博客"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+
+[params.homeInfoParams]
+  Title = "欢迎 👋"
+  Content = "记录我们的技术、生活与思考。"
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/zhumenglonge"
+
+[markup]
+  [markup.highlight]
+    style = "dracula"
+    lineNos = true
+
+[[menu.main]]
+  identifier = "archives"
+  name = "归档"
+  url = "/archives/"
+  weight = 5
+
+[[menu.main]]
+  identifier = "tags"
+  name = "标签"
+  url = "/tags/"
+  weight = 10
