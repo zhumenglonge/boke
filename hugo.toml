@@ -5,7 +5,8 @@ title = "我们的博客"
 theme = "PaperMod"
 
 enableRobotsTXT = true
-paginate = 10
+[pagination]
+  pagerSize = 10
 
 [params]
   author = "zhumenglonge"
