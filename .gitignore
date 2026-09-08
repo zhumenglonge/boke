@@ -1,0 +1,18 @@
+# Hugo 构建产物：GitHub Actions 会在部署时重新生成，无需入库
+public/
+
+# Hugo 资源缓存与构建锁
+resources/_gen/
+.hugo_build.lock
+
+# 敏感凭据：SMTP 授权码，切勿提交
+.smtp_pass
+
+# 投稿材料：含真实姓名与联系方式，与博客使用的化名不一致，不入库
+submissions/
+
+# IDE
+.idea/
+
+# macOS
+.DS_Store
