@@ -1,0 +1,32 @@
+{{- /*
+    覆盖 PaperMod 主题的同名空 partial（由 _partials/head.html 调用），用于注入站点统计脚本。
+    整体包在 hugo.IsProduction 内：本地 hugo server -D 预览时不加载，避免自己刷新把阅读量刷高。
+*/ -}}
+{{- if hugo.IsProduction }}
+
+{{- /* 不蒜子：提供页面级阅读量与全站 PV/UV，对应的计数元素见 layouts/_partials/extend_post_content.html */ -}}
+{{- if site.Params.busuanzi }}
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+{{- end }}
+
+{{- /*
+    51.la V6：后台报表（来源、趋势、停留时长）。同步加载模式，位置按官方建议放在 </head> 之前。
+    官方文档：https://v6.51.la/help-doc/gi8ybb（JS SDK 集成）、https://v6.51.la/help-doc/hsxaq8（字段说明）
+
+    两个值都在「应用管理 - 我的应用」里，注意字段对应关系：
+      la51Id -> 界面上的「动态掩码」，对应 LA.init 的 id（官方注释为“您应用的统计掩码”，可被刷新更换）。
+                不是「统计ID」！统计ID 不会出现在统计代码中，填错会采集不到数据。
+      la51Ck -> 「固定 key 值」（创建后不变）。后台生成的代码若不含 ck，留空即可，下面会自动省略该参数。
+
+    不开 hashMode：本站是 Hugo 多页静态站，每次跳转整页刷新，非 Vue/React 单页应用。
+*/ -}}
+{{- with site.Params.la51Id }}
+{{- $la51Opts := dict "id" . }}
+{{- with site.Params.la51Ck }}
+{{- $la51Opts = merge (dict "ck" .) $la51Opts }}
+{{- end }}
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({{ $la51Opts | jsonify | safeJS }});</script>
+{{- end }}
+
+{{- end }}

@@ -1,0 +1,26 @@
+{{- /*
+    覆盖 PaperMod 主题的同名空 partial（由 layouts/single.html 在正文之后、标签之前调用）。
+
+    为什么把阅读量放在这里，而不是覆盖 post_meta.html 放进文章顶部那行元信息：
+    post_meta.html 同时被 single.html、list.html、archives.html 调用，而 partial 内部无法
+    区分当前处于哪个模板，会导致首页/归档页每篇文章都渲染一个 busuanzi_value_page_pv，
+    产生重复 ID，且显示的是列表页自己的 PV 而非各篇文章的 PV。
+    extend_post_content.html 只在文章详情页渲染，不存在这个问题。
+*/ -}}
+{{- if and site.Params.busuanzi hugo.IsProduction }}
+<div class="post-meta" id="busuanzi-box" style="margin: 24px 0 0;">
+    <span>本文阅读 <span id="busuanzi_value_page_pv"></span> 次</span>
+    <span>&nbsp;·&nbsp;全站访问 <span id="busuanzi_value_site_pv"></span> 次</span>
+    <span>&nbsp;·&nbsp;访客 <span id="busuanzi_value_site_uv"></span> 人</span>
+</div>
+<script>
+    /* 不蒜子是第三方免费服务，偶发不可用；3 秒后仍无数据就整行隐藏，避免留下“本文阅读 次”的空壳 */
+    setTimeout(function () {
+        var pv = document.getElementById('busuanzi_value_page_pv');
+        var box = document.getElementById('busuanzi-box');
+        if (pv && box && !pv.textContent.trim()) {
+            box.style.display = 'none';
+        }
+    }, 3000);
+</script>
+{{- end }}

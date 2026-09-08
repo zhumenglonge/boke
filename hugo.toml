@@ -17,6 +17,17 @@ enableRobotsTXT = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
 
+  # 阅读量统计（仅生产环境生效，本地 hugo server 预览不计数）
+  # 不蒜子：在文章正文末尾显示「本文阅读 N 次 · 全站访问 N 次 · 访客 N 人」
+  busuanzi = true
+  # 51.la V6 后台报表。登录 web.51.la → 应用管理 → 我的应用 → 添加应用，
+  # 「网站域名」必须填 zhumenglonge.github.io（官方：只有填了的域名才会统计数据），
+  # 创建后进入「添加统计代码」步骤，直接把后台生成的代码里两个值拷过来：
+  #   la51Id = 代码中 id 的值，即界面上的「动态掩码」；不是「统计ID」，填错采集不到数据
+  #   la51Ck = 代码中 ck 的值，即「固定 key」；后台代码若不含 ck 就留空，模板会自动省略该参数
+  la51Id = "3R8Ha7qLnod2s8wk"
+  la51Ck = "3R8Ha7qLnod2s8wk"
+
 [params.homeInfoParams]
   Title = "欢迎 👋"
   Content = "记录我们的技术、生活与思考。"
