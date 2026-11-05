@@ -1,6 +1,6 @@
 ---
 title: 教资科一速记：学生观（两独一发展）
-date: "2026-11-04T21:00:00+08:00"
+date: "2026-11-04T07:30:00+08:00"
 tags: ["教资", "备考笔记"]
 author: "zhumenglonge"
 draft: false
